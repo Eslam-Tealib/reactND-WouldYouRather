@@ -6,6 +6,10 @@ class QuestionResult extends Component {
     render(){
         const { question, optionOneVotes, optionTwoVotes, totalVotes, authedUser } = this.props
         
+        const fromParent = this.props.location.state
+        if (typeof fromParent === 'undefined') {
+            return <h3>Error 404, not found</h3>
+        }
         const yourVote = "Your Vote"
         const isOp1 = userIdExists (authedUser, question, "optionOne")
         const isOp2 = userIdExists (authedUser, question, "optionTwo")
@@ -14,7 +18,6 @@ class QuestionResult extends Component {
         return <p>This Question doesn't existd</p>
         }
 
-        const fromParent = this.props.location.state
 
         if (typeof fromParent === 'undefined') {
             return <h3>Error 404, not found</h3>
@@ -83,10 +86,11 @@ function userIdExists ( userId, question, option ) {
 function mapStateToProps ({authedUser, users, questions}, props) {
     const id = props.match.params.id
     const question = questions[id]
-    const author = users[question.author]
-    const { optionOne,optionTwo } = question
-    const optionOneVotes = optionOne.votes.length
-    const optionTwoVotes = optionTwo.votes.length
+    const author = question ?  users[question.author] : undefined
+
+    const { optionOne,optionTwo } = question ? question : {}
+    const optionOneVotes = optionOne ? optionOne.votes.length : 0
+    const optionTwoVotes = optionTwo ? optionTwo.votes.length : 0
     const totalVotes = optionOneVotes + optionTwoVotes
 
     return {

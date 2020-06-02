@@ -2,6 +2,13 @@
 
 This is a React-Redux based Web Application that let's you play Would You Rather game.
 
+# Installation:
+=============
+1. Download / Clone project files.
+2. Run "npm install" to install packages.
+3. Run "npm start" to get the Website working on your local host. 
+
+
 # Pages:
 ========
 

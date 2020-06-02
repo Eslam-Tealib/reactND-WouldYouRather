@@ -8,7 +8,7 @@ const OPTION_TWO = "optionTwo"
 
 class QuestionPoll extends Component {
     state = {
-        selectedOption : this.props.question.optionOne.text,
+        selectedOption : this.props.question ? this.props.question.optionOne.text : '',
         toResult : false
     }
 
@@ -116,10 +116,10 @@ function mapStateToProps ({authedUser, users, questions}, props) {
    
     const id = props.match.params.id
     const question = questions[id]
-    const author = users[question.author]
+    const author = question ?  users[question.author] : undefined
     return {
       authedUser,
-      question : question ? formatQuestion(question,author) : null
+      question : (question && author) ? formatQuestion(question,author) : null
       };
   }
 export default connect(mapStateToProps)(QuestionPoll)
