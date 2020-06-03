@@ -41,11 +41,11 @@ class QuestionPoll extends Component {
         const { question } = this.props
         const { toResult } = this.state
 
-        const fromParent = this.props.location.state
 
-        if (typeof fromParent === 'undefined') {
-            return <h3>Error 404, not found</h3>
+        if (question === null) {
+        return <h3>Error 404, not found</h3>
         }
+    
 
         if(toResult){
             const param = '/question/' + question.id + '/result'
@@ -55,11 +55,7 @@ class QuestionPoll extends Component {
                 }
             } />
         }
-
-        if (question === null) {
-        return <p>This Question doesn't existd</p>
-        }
-    
+        
         const { author, avatar, optionOne, optionTwo } = question
     
         return (

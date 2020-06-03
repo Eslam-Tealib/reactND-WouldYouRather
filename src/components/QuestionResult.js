@@ -6,23 +6,13 @@ class QuestionResult extends Component {
     render(){
         const { question, optionOneVotes, optionTwoVotes, totalVotes, authedUser } = this.props
         
-        const fromParent = this.props.location.state
-        if (typeof fromParent === 'undefined') {
-            return <h3>Error 404, not found</h3>
+        if (question === null) {
+        return <h3>Error 404, not found</h3>
         }
+
         const yourVote = "Your Vote"
         const isOp1 = userIdExists (authedUser, question, "optionOne")
         const isOp2 = userIdExists (authedUser, question, "optionTwo")
-
-        if (question === null) {
-        return <p>This Question doesn't existd</p>
-        }
-
-
-        if (typeof fromParent === 'undefined') {
-            return <h3>Error 404, not found</h3>
-        }
-    
         const { author, avatar, optionOne,optionTwo } = question
         
         

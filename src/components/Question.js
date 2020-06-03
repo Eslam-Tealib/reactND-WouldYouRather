@@ -25,6 +25,12 @@ class Question extends Component {
             const resultPage = '/question/' + question.id + '/result'
             const param = isAnswered ? resultPage : viewPage
 
+            // Udacity Review
+            // { this.props.isAnswered
+            //     ? <AnswerView id={id}/>
+            //     : <QuestionView id={id}/>
+            // }
+
             return <Redirect to={{
                 pathname: param,
                 state: { fromParent: true }
